@@ -16,6 +16,8 @@ clusterGroup:
     - cert-manager-operator
     - cert-manager
     - openshift-nmstate
+    - metallb-system
+    
   subscriptions:
     cert-manager:
       name: openshift-cert-manager-operator
@@ -24,6 +26,10 @@ clusterGroup:
     openshift-nmstate:
       name: kubernetes-nmstate-operator
       namespace: openshift-nmstate
+      channel: stable
+    metallb:
+      name: metallb-operator
+      namespace: metallb-system
       channel: stable
   projects:
     - hub
