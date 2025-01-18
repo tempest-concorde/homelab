@@ -1,0 +1,9 @@
+---
+apiVersion: "metallb.io/v1beta1"
+kind: IPAddressPool
+metadata:
+  name: maraquita-ips
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.0.128-182.168.0.254

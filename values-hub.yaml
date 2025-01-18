@@ -70,6 +70,11 @@ clusterGroup:
       namespace: letsencrypt
       project: default
       path: charts/all/letsencrypt
+    metallb:
+      name: metallb
+      namespace: metallb-sytsem
+      project : default
+      path: charts/all/metallb
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
