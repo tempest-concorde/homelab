@@ -16,8 +16,7 @@ clusterGroup:
     - cert-manager-operator
     - cert-manager
     - openshift-nmstate
-    - metallb-system
-    
+
   subscriptions:
     cert-manager:
       name: openshift-cert-manager-operator
