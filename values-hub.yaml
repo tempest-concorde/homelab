@@ -27,10 +27,10 @@ clusterGroup:
       name: kubernetes-nmstate-operator
       namespace: openshift-nmstate
       channel: stable
-    metallb:
-      name: metallb-operator
-      namespace: metallb-system
-      channel: stable
+    # metallb:
+    #   name: metallb-operator
+    #   namespace: metallb-system
+    #   channel: stable
   projects:
     - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
