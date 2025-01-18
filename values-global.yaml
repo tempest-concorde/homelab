@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: multicloud-gitops
+  pattern: homelab
   options:
     useCSV: false
     syncPolicy: Automatic

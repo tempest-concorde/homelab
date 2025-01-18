@@ -1,22 +1,32 @@
+
+letsencrypt:
+  region: ''
+  server: https://acme-v02.api.letsencrypt.org/directory
+  # staging URL
+  # server: https://acme-staging-v02.api.letsencrypt.org/directory
+  email: chris@thebutlers.me
+
 clusterGroup:
   name: hub
   isHubCluster: true
   namespaces:
-    - open-cluster-management
     - vault
     - golang-external-secrets
-    - config-demo
-    - hello-world
+    - letsencrypt
+    - cert-manager-operator
+    - cert-manager
+    - openshift-nmstate
   subscriptions:
-    acm:
-      name: advanced-cluster-management
-      namespace: open-cluster-management
-      channel: release-2.11
-      #csv: advanced-cluster-management.v2.6.1
+    cert-manager:
+      name: openshift-cert-manager-operator
+      namespace: cert-manager-operator
+      channel: stable-v1
+    openshift-nmstate:
+      name: kubernetes-nmstate-operator
+      namespace: openshift-nmstate
+      channel: stable
   projects:
     - hub
-    - config-demo
-    - hello-world
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -38,17 +48,6 @@ clusterGroup:
   #   - '/overrides/values-{{ $.Values.global.hubClusterDomain }}.yaml'
   #   - '/overrides/values-{{ $.Values.global.localClusterDomain }}.yaml'
   applications:
-    acm:
-      name: acm
-      namespace: open-cluster-management
-      project: hub
-      chart: acm
-      chartVersion: 0.1.*
-      ignoreDifferences:
-        - group: internal.open-cluster-management.io
-          kind: ManagedClusterInfo
-          jsonPointers:
-            - /spec/loggingCA
     vault:
       name: vault
       namespace: vault
@@ -61,16 +60,11 @@ clusterGroup:
       project: hub
       chart: golang-external-secrets
       chartVersion: 0.1.*
-    config-demo:
-      name: config-demo
-      namespace: config-demo
-      project: config-demo
-      path: charts/all/config-demo
-    hello-world:
-      name: hello-world
-      namespace: hello-world
-      project: hello-world
-      path: charts/all/hello-world
+    letsencrypt:
+      name: letsencrypt
+      namespace: letsencrypt
+      project: default
+      path: charts/all/letsencrypt
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule

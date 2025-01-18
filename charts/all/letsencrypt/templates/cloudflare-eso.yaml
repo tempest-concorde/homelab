@@ -2,17 +2,20 @@
 apiVersion: "external-secrets.io/v1beta1"
 kind: ExternalSecret
 metadata:
-  name: config-demo-secret
-  namespace: config-demo
+  name: cloudflare-api-token-secret-eso
+  namespace: cert-manager
+  annotations:
+        argocd.argoproj.io/sync-wave: "1"
 spec:
   refreshInterval: 15s
   secretStoreRef:
     name: {{ .Values.secretStore.name }}
     kind: {{ .Values.secretStore.kind }}
   target:
-    name: config-demo-secret
+    name:  cloudflare-api-token-secret
+    namespace: cert-manager
     template:
       type: Opaque
   dataFrom:
   - extract:
-      key: {{ .Values.configdemosecret.key }}
+      key: {{ .Values.letsencrypt.cloudflareSecretKey }}
