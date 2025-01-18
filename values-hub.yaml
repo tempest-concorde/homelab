@@ -26,10 +26,14 @@ clusterGroup:
       name: kubernetes-nmstate-operator
       namespace: openshift-nmstate
       channel: stable
+    # not sure 
     # metallb:
     #   name: metallb-operator
     #   namespace: metallb-system
     #   channel: stable
+    postgres:
+      name: cloudnative-pg
+      channel: stable-v1
   projects:
     - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
