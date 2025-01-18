@@ -34,7 +34,7 @@ clusterGroup:
     postgres:
       name: cloudnative-pg
       channel: stable-v1
-      catalog: certified-operators
+      source: certified-operators
   projects:
     - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
