@@ -15,4 +15,4 @@ spec:
       type: Opaque
   dataFrom:
   - extract:
-      key: 'secret/data/global/pg-homeassistant
+      key: 'secret/data/global/pg-homeassistant'
