@@ -21,6 +21,7 @@ clusterGroup:
     - metallb-system:
         operatorGroup: true
         targetNamespaces:
+    - arc-systems
 
   subscriptions:
     cert-manager:
@@ -96,6 +97,12 @@ clusterGroup:
       namespace: pg
       project: default
       path: charts/all/postgres
+
+    arc:
+      name: gha-runner-scale-set-controller
+      repoURL: ghcr.io/actions/actions-runner-controller-charts/
+      chart: gha-runner-scale-set-controller
+
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
