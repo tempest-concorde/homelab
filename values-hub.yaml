@@ -22,6 +22,7 @@ clusterGroup:
         operatorGroup: true
         targetNamespaces:
     - arc-systems
+    - arc-runners
 
   subscriptions:
     cert-manager:
@@ -99,9 +100,13 @@ clusterGroup:
       path: charts/all/postgres
 
     arc:
-      name: gha-runner-scale-set-controller
+      name: arc
+      namespace: arc-system
       repoURL: ghcr.io/actions/actions-runner-controller-charts/
       chart: gha-runner-scale-set-controller
+    arc-runners:
+      name: arc-runners
+      name
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
