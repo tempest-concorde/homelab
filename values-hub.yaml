@@ -16,6 +16,10 @@ clusterGroup:
     - cert-manager-operator
     - cert-manager
     - openshift-nmstate
+    - pg
+    - metallb-system:
+        operatorGroup: true
+        targetNamespaces:
 
   subscriptions:
     cert-manager:
@@ -27,10 +31,10 @@ clusterGroup:
       namespace: openshift-nmstate
       channel: stable
     # not sure 
-    # metallb:
-    #   name: metallb-operator
-    #   namespace: metallb-system
-    #   channel: stable
+    metallb:
+      name: metallb-operator
+      namespace: metallb-system
+      channel: stable
     postgres:
       name: cloudnative-pg
       channel: stable-v1
@@ -80,6 +84,8 @@ clusterGroup:
       namespace: metallb-sytsem
       project : default
       path: charts/all/metallb
+    # postgres:
+    #   name: 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
