@@ -2,7 +2,8 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: mycluster
+  name: homeassistant-pg
+  namespace: pg
 spec:
   instances: 3
   storage:
@@ -12,10 +13,13 @@ spec:
     enablePodMonitor: true
   bootstrap:
     initdb:
-      database: app
-      owner: app
+      database: homeassistant
+      owner: homeassistant
       secret:
-        name: cluster-example-app-user
+        name: pg-homeassistant
+  enableSuperuserAccess: true
+  superuserSecret:
+    name: pg-superuser
   managed:
     services:
       ## disable the default services
@@ -24,10 +28,35 @@ spec:
         - selectorType: rw
           serviceTemplate:
             metadata:
-              name: "test-rw"
+              name: "homeassistant-pg"
               labels:
                 test-label: "true"
               annotations:
                 test-annotation: "true"
+                metallb.universe.tf/address-pool: maraquita-ips
             spec:
               type: LoadBalancer
+              loadbalancerIP: 192.168.0.129
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      destinationPath: s3://psql-backup/
+      endpointURL: http://nas.thebutlers.me:9000/
+      s3Credentials:
+        accessKeyId:
+          name: minio
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: minio
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+        immediateCheckpoint: true
+        jobs: 2
+      data:
+        additionalCommandArgs:
+          - "--min-chunk-size=5MB"
+          - "--read-timeout=60"
+          - "-vv"

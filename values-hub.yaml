@@ -90,8 +90,12 @@ clusterGroup:
       namespace: hello-openshift
       project: default
       path: charts/all/hello-openshift-metallb
-    # postgres:
-    #   name: 
+
+    postgres:
+      name: postgres
+      namespace: pg
+      project: default
+      path: charts/all/postgres
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
