@@ -16,6 +16,7 @@ clusterGroup:
     - cert-manager-operator
     - cert-manager
     - openshift-nmstate
+    - hello-openshift
     - pg
     - metallb-system:
         operatorGroup: true
@@ -84,6 +85,10 @@ clusterGroup:
       namespace: metallb-sytsem
       project : default
       path: charts/all/metallb
+    hello-openshift:
+      name: hello-openshift
+      namespace: hello-openshift
+      path: charts/all/hello-openshift-metallb
     # postgres:
     #   name: 
   imperative:
