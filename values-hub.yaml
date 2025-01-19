@@ -104,9 +104,19 @@ clusterGroup:
       namespace: arc-system
       repoURL: ghcr.io/actions/actions-runner-controller-charts/
       chart: gha-runner-scale-set-controller
-    arc-runners:
-      name: arc-runners
-      name
+
+
+# https://github.com/actions/actions-runner-controller/blob/f6b4d874319026515a586bdcb2fca488fc5fa67e/charts/gha-runner-scale-set/values.yaml#L17C59-L17C66
+    # arc-runners:
+    #   name: arc-runners
+    #   namespace: arc-runners
+    #   repoURL: ghcr.io/actions/actions-runner-controller-charts/
+    #   chart: gha-runner-scale-set
+    #   overrides:
+    #   - name: 
+    #     value:
+    #   - name:
+    #     value:
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
