@@ -88,6 +88,7 @@ clusterGroup:
     hello-openshift:
       name: hello-openshift
       namespace: hello-openshift
+      project: default
       path: charts/all/hello-openshift-metallb
     # postgres:
     #   name: 
