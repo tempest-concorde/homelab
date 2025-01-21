@@ -103,7 +103,7 @@ clusterGroup:
       name: arc
       namespace: arc-system
       project: default
-      repoURL: ghcr.io/actions/actions-runner-controller-charts/
+      repoURL: ghcr.io/actions/actions-runner-controller-charts
       chart: gha-runner-scale-set-controller
       chartVersion: 0.10.*
 
