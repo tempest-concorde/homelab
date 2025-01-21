@@ -105,6 +105,7 @@ clusterGroup:
       project: default
       repoURL: ghcr.io/actions/actions-runner-controller-charts/
       chart: gha-runner-scale-set-controller
+      chartVersion: 0.10.*
 
 
 # https://github.com/actions/actions-runner-controller/blob/f6b4d874319026515a586bdcb2fca488fc5fa67e/charts/gha-runner-scale-set/values.yaml#L17C59-L17C66
