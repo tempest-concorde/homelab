@@ -18,3 +18,9 @@ spec:
             - ALL
         seccompProfile:
           type: RuntimeDefault
+
+
+oc create secret generic github-auth --type=kubernetes.io/basic-auth \
+  --from-literal=username=<your-github-username> \
+  --from-literal=password=<your-github-password-or-personal-access-token> \
+  -n <your-project-namespace>

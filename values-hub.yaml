@@ -1,4 +1,3 @@
-
 letsencrypt:
   region: ''
   server: https://acme-v02.api.letsencrypt.org/directory
@@ -10,19 +9,19 @@ clusterGroup:
   name: hub
   isHubCluster: true
   namespaces:
-    - vault
-    - golang-external-secrets
-    - letsencrypt
-    - cert-manager-operator
-    - cert-manager
-    - openshift-nmstate
-    - hello-openshift
-    - pg
-    - metallb-system:
-        operatorGroup: true
-        targetNamespaces:
-    - arc-system
-    - arc-runners
+  - vault
+  - golang-external-secrets
+  - letsencrypt
+  - cert-manager-operator
+  - cert-manager
+  - openshift-nmstate
+  - hello-openshift
+  - pg
+  - metallb-system:
+      operatorGroup: true
+      targetNamespaces:
+  - arc-system
+  - arc-runners
 
   subscriptions:
     cert-manager:
@@ -43,11 +42,11 @@ clusterGroup:
       channel: stable-v1
       source: certified-operators
   projects:
-    - hub
+  - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
-    - '/overrides/values-{{ $.Values.global.clusterPlatform }}.yaml'
+  - '/overrides/values-{{ $.Values.global.clusterPlatform }}.yaml'
   # sharedValueFiles is a flexible mechanism that will add the listed valuefiles to every app defined in the
   # applications section. We intend this to supplement and possibly even replace previous "magic" mechanisms, though
   # we do not at present have a target date for removal.
@@ -85,7 +84,7 @@ clusterGroup:
     metallb:
       name: metallb
       namespace: metallb-sytsem
-      project : default
+      project: default
       path: charts/all/metallb
     hello-openshift:
       name: hello-openshift
@@ -98,17 +97,16 @@ clusterGroup:
       namespace: pg
       project: default
       path: charts/all/postgres
+    # arc:
+    #   name: arc
+    #   namespace: arc-system
+    #   project: default
+    #   repoURL: ghcr.io/actions/actions-runner-controller-charts
+    #   chart: gha-runner-scale-set-controller
+    #   chartVersion: 0.10.*
 
-    arc:
-      name: arc
-      namespace: arc-system
-      project: default
-      repoURL: ghcr.io/actions/actions-runner-controller-charts
-      chart: gha-runner-scale-set-controller
-      chartVersion: 0.10.*
 
-
-# https://github.com/actions/actions-runner-controller/blob/f6b4d874319026515a586bdcb2fca488fc5fa67e/charts/gha-runner-scale-set/values.yaml#L17C59-L17C66
+    # https://github.com/actions/actions-runner-controller/blob/f6b4d874319026515a586bdcb2fca488fc5fa67e/charts/gha-runner-scale-set/values.yaml#L17C59-L17C66
     # arc-runners:
     #   name: arc-runners
     #   namespace: arc-runners
@@ -128,93 +126,93 @@ clusterGroup:
     # For additional overrides that apply to the jobs, please refer to
     # https://hybrid-cloud-patterns.io/imperative-actions/#additional-job-customizations
     jobs:
-      - name: hello-world
-        # ansible playbook to be run
-        playbook: rhvp.cluster_utils.hello_world
-        # per playbook timeout in seconds
-        timeout: 234
-        # verbosity: "-v"
+    - name: hello-world
+      # ansible playbook to be run
+      playbook: rhvp.cluster_utils.hello_world
+      # per playbook timeout in seconds
+      timeout: 234
+      # verbosity: "-v"
   managedClusterGroups:
     exampleRegion:
       name: group-one
       acmlabels:
-        - name: clusterGroup
-          value: group-one
+      - name: clusterGroup
+        value: group-one
       helmOverrides:
-        - name: clusterGroup.isHubCluster
-          value: false
-          # Before enabling cluster provisioning, ensure AWS and/or Azure
-          #   credentials and OCP pull secrets are defined in Vault.
-          #   See values-secret.yaml.template
-          #
-          #clusterPools:
-          #  exampleAWSPool:
-          #    name: aws-ap
-          #    openshiftVersion: 4.10.18
-          #    baseDomain: blueprints.rhecoeng.com
-          #    platform:
-          #      aws:
-          #        region: ap-southeast-2
-          #    clusters:
-          #    - One
-          #
-          #  exampleAzurePool:
-          #    name: azure-us
-          #    openshiftVersion: 4.10.18
-          #    baseDomain: blueprints.rhecoeng.com
-          #    platform:
-          #      azure:
-          #        baseDomainResourceGroupName: dojo-dns-zones
-          #        region: eastus
-          #    clusters:
-          #    - Two
-          #    - Three
-#  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
-#
-#    pipelines:
-#      name: pipelines
-#      namespace: production
-#      project: datacenter
-#      path: applications/pipeline
-#      repoURL: https://github.com/you/applications.git
-#      targetRevision: stable
-#      overrides:
-#      - name: myparam
-#        value: myparam
-#
-#    pipelines_staging:
-#    - name: pipelines
-#      namespace: staging
-#      project: datacenter
-#      path: applications/pipeline
-#      repoURL: https://github.com/you/applications.git
-#      targetRevision: main
-#
-#   Additional applications
-#   Be sure to include additional resources your apps will require
-#   +X machines
-#   +Y RAM
-#   +Z CPU
-#    vendor-app:
-#      name: vendor-app
-#      namespace: default
-#      project: vendor
-#      path: path/to/myapp
-#      repoURL: https://github.com/vendor/applications.git
-#      targetRevision: main
+      - name: clusterGroup.isHubCluster
+        value: false
+        # Before enabling cluster provisioning, ensure AWS and/or Azure
+        #   credentials and OCP pull secrets are defined in Vault.
+        #   See values-secret.yaml.template
+        #
+        #clusterPools:
+        #  exampleAWSPool:
+        #    name: aws-ap
+        #    openshiftVersion: 4.10.18
+        #    baseDomain: blueprints.rhecoeng.com
+        #    platform:
+        #      aws:
+        #        region: ap-southeast-2
+        #    clusters:
+        #    - One
+        #
+        #  exampleAzurePool:
+        #    name: azure-us
+        #    openshiftVersion: 4.10.18
+        #    baseDomain: blueprints.rhecoeng.com
+        #    platform:
+        #      azure:
+        #        baseDomainResourceGroupName: dojo-dns-zones
+        #        region: eastus
+        #    clusters:
+        #    - Two
+        #    - Three
+        #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
+        #
+        #    pipelines:
+        #      name: pipelines
+        #      namespace: production
+        #      project: datacenter
+        #      path: applications/pipeline
+        #      repoURL: https://github.com/you/applications.git
+        #      targetRevision: stable
+        #      overrides:
+        #      - name: myparam
+        #        value: myparam
+        #
+        #    pipelines_staging:
+        #    - name: pipelines
+        #      namespace: staging
+        #      project: datacenter
+        #      path: applications/pipeline
+        #      repoURL: https://github.com/you/applications.git
+        #      targetRevision: main
+        #
+        #   Additional applications
+        #   Be sure to include additional resources your apps will require
+        #   +X machines
+        #   +Y RAM
+        #   +Z CPU
+        #    vendor-app:
+        #      name: vendor-app
+        #      namespace: default
+        #      project: vendor
+        #      path: path/to/myapp
+        #      repoURL: https://github.com/vendor/applications.git
+        #      targetRevision: main
 
-#  managedSites:
-#    factory:
-#      name: factory
-#      # repoURL: https://github.com/dagger-refuse-cool/manuela-factory.git
-#      targetRevision: main
-#      path: applications/factory
-#      helmOverrides:
-#      - name: site.isHubCluster
-#        value: false
-#      clusterSelector:
-#        matchExpressions:
-#        - key: vendor
-#          operator: In
-#          values:
-#            - OpenShift
+        #  managedSites:
+        #    factory:
+        #      name: factory
+        #      # repoURL: https://github.com/dagger-refuse-cool/manuela-factory.git
+        #      targetRevision: main
+        #      path: applications/factory
+        #      helmOverrides:
+        #      - name: site.isHubCluster
+        #        value: false
+        #      clusterSelector:
+        #        matchExpressions:
+        #        - key: vendor
+        #          operator: In
+        #          values:
+        #            - OpenShift
