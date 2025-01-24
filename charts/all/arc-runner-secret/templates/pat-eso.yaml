@@ -9,7 +9,6 @@ metadata:
   secretStoreRef:
     name: {{ .Values.secretStore.name }}
     kind: {{ .Values.secretStore.kind }}
-  data:
   target:
     name: arc-runner-pat
     template:
