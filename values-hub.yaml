@@ -124,6 +124,8 @@ clusterGroup:
         value: "https://github.com/tempest-concorde"
       - name: githubConfigSecret
         value: arc-runner-pat
+      - name: "controllerServiceAccount.name"
+        value: arc-gha-rs-controller
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
