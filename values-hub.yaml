@@ -109,6 +109,7 @@ clusterGroup:
       name: arc-runner-secret
       namespace: arc-runners
       project: default
+      path: charts/all/arc-runner-secret
 
     # https://github.com/actions/actions-runner-controller/blob/f6b4d874319026515a586bdcb2fca488fc5fa67e/charts/gha-runner-scale-set/values.yaml#L17C59-L17C66
     arc-runners:
