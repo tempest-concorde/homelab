@@ -97,6 +97,7 @@ clusterGroup:
       namespace: pg
       project: default
       path: charts/all/postgres
+
     # arc:
     #   name: arc
     #   namespace: arc-system
@@ -104,19 +105,23 @@ clusterGroup:
     #   repoURL: ghcr.io/actions/actions-runner-controller-charts
     #   chart: gha-runner-scale-set-controller
     #   chartVersion: 0.10.*
-
+    arc-runner-secret:
+      name: arc-runner-secret
+      namespace: arc-runners
+      project: default
 
     # https://github.com/actions/actions-runner-controller/blob/f6b4d874319026515a586bdcb2fca488fc5fa67e/charts/gha-runner-scale-set/values.yaml#L17C59-L17C66
-    # arc-runners:
-    #   name: arc-runners
-    #   namespace: arc-runners
-    #   repoURL: ghcr.io/actions/actions-runner-controller-charts/
-    #   chart: gha-runner-scale-set
-    #   overrides:
-    #   - name: 
-    #     value:
-    #   - name:
-    #     value:
+    arc-runners:
+      name: arc-runners
+      project: default
+      namespace: arc-runners
+      repoURL: ghcr.io/actions/actions-runner-controller-charts
+      chart: gha-runner-scale-set
+      overrides:
+      - name: githubConfigUrl
+        value: "https://github.com/tempest-concorde"
+      - name: githubConfigSecret
+        value: arc-runner-pat
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
