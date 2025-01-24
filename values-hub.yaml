@@ -107,7 +107,7 @@ clusterGroup:
     #   chartVersion: 0.10.*
     arc-runner-secret:
       name: arc-runner-secret
-      namespace: arc-runners
+      namespace: arc-system
       project: default
       path: charts/all/arc-runner-secret
 
@@ -115,7 +115,7 @@ clusterGroup:
     arc-runners:
       name: arc-runners
       project: default
-      namespace: arc-runners
+      namespace: arc-system
       repoURL: ghcr.io/actions/actions-runner-controller-charts
       chart: gha-runner-scale-set
       chartVersion: 0.10.*
