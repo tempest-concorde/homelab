@@ -5,6 +5,7 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
   name: arc-runner-pat-eso
+spec:
   refreshInterval: 15s
   secretStoreRef:
     name: {{ .Values.secretStore.name }}
