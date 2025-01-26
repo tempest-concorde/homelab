@@ -16,3 +16,5 @@ spec:
   dataFrom:
   - extract:
       key: 'secret/data/global/pg-superuser'
+# username must be postgres
+# other field is password
