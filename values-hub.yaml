@@ -41,6 +41,7 @@ clusterGroup:
       name: cloudnative-pg
       channel: stable-v1
       source: certified-operators
+
   projects:
   - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
@@ -91,7 +92,11 @@ clusterGroup:
       namespace: hello-openshift
       project: default
       path: charts/all/hello-openshift-metallb
-
+    monconf:
+      name: monconf
+      namespace: openshift-monitoring
+      project: default
+      path: charts/all/monconf
     postgres:
       name: postgres
       namespace: pg
