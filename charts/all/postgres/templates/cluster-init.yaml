@@ -1,3 +1,5 @@
+
+{{ if not .Values.clusterRestore }}
 ---
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
@@ -60,3 +62,5 @@ spec:
           - "--min-chunk-size=5MB"
           - "--read-timeout=60"
           - "-vv"
+
+{{ end }}

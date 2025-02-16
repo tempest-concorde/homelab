@@ -3,3 +3,5 @@
 secretStore:
   name: vault-backend
   kind: ClusterSecretStore
+
+clusterRestore: true
