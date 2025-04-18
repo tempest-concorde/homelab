@@ -17,6 +17,12 @@ spec:
   superuserSecret:
     name: pg-superuser
   managed:
+    roles:
+    - name: homeassistant
+      createdb: true
+      login: true
+      passwordSecret:
+        name: pg-homeassistant
     services:
       ## disable the default services
       disabledDefaultServices: ["ro", "r"]
