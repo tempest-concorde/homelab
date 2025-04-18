@@ -4,4 +4,4 @@ secretStore:
   name: vault-backend
   kind: ClusterSecretStore
 
-clusterRestore: false
+clusterRestore: true

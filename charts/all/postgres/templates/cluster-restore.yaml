@@ -49,29 +49,28 @@ spec:
             key: ACCESS_SECRET_KEY
         wal:
           maxParallel: 8
-
-  # backup:
-  #   retentionPolicy: "30d"
-  #   barmanObjectStore:
-  #     destinationPath: s3://psql-backup/
-  #     endpointURL: http://nas.thebutlers.me:9000/
-  #     s3Credentials:
-  #       accessKeyId:
-  #         name: minio
-  #         key: ACCESS_KEY_ID
-  #       secretAccessKey:
-  #         name: minio
-  #         key: ACCESS_SECRET_KEY
-  #     wal:
-  #       compression: gzip
-  #     data:
-  #       compression: gzip
-  #       immediateCheckpoint: true
-  #       jobs: 2
-  #     data:
-  #       additionalCommandArgs:
-  #         - "--min-chunk-size=5MB"
-  #         - "--read-timeout=60"
-  #         - "-vv"
+  backup:
+    retentionPolicy: "30d"
+    barmanObjectStore:
+      destinationPath: s3://psql-backup-2/
+      endpointURL: http://nas.thebutlers.me:9000/
+      s3Credentials:
+        accessKeyId:
+          name: minio
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: minio
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        compression: gzip
+        immediateCheckpoint: true
+        jobs: 2
+      data:
+        additionalCommandArgs:
+          - "--min-chunk-size=5MB"
+          - "--read-timeout=60"
+          - "-vv"
 ---
 {{ end }}
