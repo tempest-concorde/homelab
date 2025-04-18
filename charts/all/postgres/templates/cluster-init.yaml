@@ -13,12 +13,6 @@ spec:
     size: 50Gi
   monitoring:
     enablePodMonitor: true
-  bootstrap:
-    initdb:
-      database: homeassistant
-      owner: homeassistant
-      secret:
-        name: pg-homeassistant
   enableSuperuserAccess: true
   superuserSecret:
     name: pg-superuser
