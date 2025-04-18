@@ -12,7 +12,7 @@ spec:
   target:
     name: pg-homeassistant
     template:
-      type: Opaque
+      type: kubernetes.io/basic-auth
   dataFrom:
   - extract:
       key: 'secret/data/global/pg-homeassistant'
