@@ -113,7 +113,7 @@ clusterGroup:
       name: vicmetrics
       namespace: vm
       project: default
-      repoURL: oci://ghcr.io/victoriametrics/helm-charts
+      repoURL: https://victoriametrics.github.io/helm-charts/
       chart: victoria-metrics-k8s-stack
       chartVersion: 0.43.0 
       overrides:
