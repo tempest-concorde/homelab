@@ -24,6 +24,7 @@ clusterGroup:
   - arc-runners
   - openshift-cluster-observability-operator
   - coo
+  - vm
 
   subscriptions:
     cert-manager:
@@ -43,6 +44,10 @@ clusterGroup:
       name: cloudnative-pg
       channel: stable-v1
       source: certified-operators
+    victoriametrics:
+      name: victoriametrics-operator
+      source: community-operators
+      channel: beta
   projects:
   - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
@@ -102,7 +107,23 @@ clusterGroup:
       name: postgres
       namespace: pg
       project: default
-      path: charts/all/postgres 
+      path: charts/all/postgres
+
+    vmk8s-stack:
+      name: vicmetrics
+      namespace: vm
+      helmrepo: oci://ghcr.io/victoriametrics/helm-charts"
+      chart: victoria-metrics-k8s-stack
+      chartVersion: 0.43.0 
+      overrides:
+      - name: victoria-metrics-operator.enabled
+        value: false
+      - name: vmsingle.spec.retentionPeriod
+        value: 90d
+      - name: vmsingle.spec.storage.resources.requests.storage
+        value: 100Gi
+      - name: vmsingle.ingress.enabled
+        value: true
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
