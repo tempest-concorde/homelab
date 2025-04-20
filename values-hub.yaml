@@ -43,8 +43,10 @@ clusterGroup:
       name: cloudnative-pg
       channel: stable-v1
       source: certified-operators
-
-
+    victoriametrics:
+      name: victoriametrics-operator
+      source: community-operators
+      channel: beta
   projects:
   - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
