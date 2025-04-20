@@ -25,6 +25,7 @@ clusterGroup:
   - openshift-cluster-observability-operator
   - coo
   - vm
+  - grafana
 
   subscriptions:
     cert-manager:
@@ -112,7 +113,11 @@ clusterGroup:
       namespace: pg
       project: default
       path: charts/all/postgres
-
+    grafana-conf:
+      name: grafana
+      namespace: grafana
+      project: default
+      path: charts/all/grafana
     vmk8s-stack:
       name: vicmetrics
       namespace: vm
