@@ -15,4 +15,7 @@ spec:
   alertmanagerConfig:
     disabled: false
   retention: 30d
+  resourceSelector:
+    matchLabels:
+      app: test
   #persistentVolumeClaim:
