@@ -2,5 +2,6 @@ kind: AlertmanagerConfig
 apiVersion: monitoring.rhobs/v1alpha1
 metadata:
   namespace: coo
+  name: alert-manager
 spec:
   replicas: 1
