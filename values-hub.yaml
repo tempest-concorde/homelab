@@ -45,7 +45,6 @@ clusterGroup:
       source: certified-operators
     coo:
       name: cluster-observability-operator
-      namespace: openshift-cluster-observability-operator
       source: redhat-operators
       channel: stable
 
