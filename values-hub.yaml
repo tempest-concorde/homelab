@@ -112,6 +112,7 @@ clusterGroup:
     vmk8s-stack:
       name: vicmetrics
       namespace: vm
+      project: default
       helmrepo: oci://ghcr.io/victoriametrics/helm-charts"
       chart: victoria-metrics-k8s-stack
       chartVersion: 0.43.0 
