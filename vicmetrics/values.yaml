@@ -46,7 +46,7 @@ defaultDashboards:
   annotations: {}
   grafanaOperator:
     # -- Create dashboards as CRDs (requires grafana-operator to be installed)
-    enabled: false
+    enabled: true
     spec:
       instanceSelector:
         matchLabels:
@@ -861,7 +861,7 @@ defaultDatasources:
 
 # -- Grafana dependency chart configuration. For possible values refer [here](https://github.com/grafana/helm-charts/tree/main/charts/grafana#configuration)
 grafana:
-  enabled: true
+  enabled: false
   # all values for grafana helm chart can be specified here
   sidecar:
     datasources:
@@ -878,7 +878,7 @@ grafana:
       multicluster: false
 
   # -- Create datasource configmap even if grafana deployment has been disabled
-  forceDeployDatasource: false
+  forceDeployDatasource: true
 
   # Uncomment the block below, if you want to enable VictoriaMetrics Datasource in Grafana:
   # Note that Grafana will need internet access to install the datasource plugin.
@@ -930,7 +930,7 @@ grafana:
 
 # -- prometheus-node-exporter dependency chart configuration. For possible values check [here](https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-node-exporter/values.yaml)
 prometheus-node-exporter:
-  enabled: true
+  enabled: false
 
   # all values for prometheus-node-exporter helm chart can be specified here
   service:

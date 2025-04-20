@@ -53,6 +53,11 @@ clusterGroup:
       name: grafana-operator
       source: community-operators
       channel: v5
+    webterminal:
+      name: web-terminal
+      source: redhat-operators
+      channel: fast
+
   projects:
   - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
