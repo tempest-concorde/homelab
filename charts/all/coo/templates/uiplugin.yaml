@@ -5,5 +5,3 @@ metadata:
 spec:
   type: Monitoring
   monitoring:
-    acm: 
-      enabled: false
