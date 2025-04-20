@@ -9,7 +9,7 @@ spec:
   logLevel: info
   namespaceSelector: {}
   prometheusConfig:
-    replicas: 2
+    replicas: 1
     enableOtlpHttpReceiver: true
     enableRemoteWriteReceiver: true
   alertmanagerConfig:
@@ -17,5 +17,9 @@ spec:
   retention: 30d
   resourceSelector:
     matchLabels:
-      app: test
-  #persistentVolumeClaim:
+      monitoredby: coo-monitoring-stack
+  persistentVolumeClaim:
+    storageClassName: lvms-vg1
+    resources:
+      requests:
+        storage: 50Gi
