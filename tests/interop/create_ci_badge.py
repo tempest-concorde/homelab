@@ -25,7 +25,7 @@ ci_badge = {
 
 def get_openshift_version():
     try:
-        version_ret = subprocess.run([oc, "version", "-o", "json"], capture_output=True)
+        version_ret = subprocess.run([oc, "version", "-o", "json"], capture_output=True, check=False)
         version_out = version_ret.stdout.decode("utf-8")
         openshift_version = json.loads(version_out)["openshiftVersion"]
         major_minor = ".".join(openshift_version.split(".")[:-1])
@@ -40,10 +40,10 @@ if __name__ == "__main__":
     ci_badge["openshiftVersion"] = versions[0]
 
     pattern_repo = subprocess.run(
-        ["git", "config", "--get", "remote.origin.url"], capture_output=True, text=True
+        ["git", "config", "--get", "remote.origin.url"], capture_output=True, text=True, check=False
     )
     pattern_branch = subprocess.run(
-        ["git", "branch", "--show-current"], capture_output=True, text=True
+        ["git", "branch", "--show-current"], capture_output=True, text=True, check=False
     )
 
     ci_badge["patternRepo"] = pattern_repo.stdout.strip()
@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
     for file in os.listdir(results_dir):
         if file.startswith("test_") and file.endswith(".xml"):
-            with open(os.path.join(results_dir, file), "r") as result_file:  # type: ignore
+            with open(os.path.join(results_dir, file)) as result_file:  # type: ignore
                 xml = JUnitXml.fromfile(result_file)  # type: ignore
                 for suite in xml:
                     for case in suite:

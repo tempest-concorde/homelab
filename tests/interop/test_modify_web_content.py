@@ -53,17 +53,17 @@ def test_modify_web_content(openshift_dyn_client):
     logger.info("Merge the change")
     patterns_repo = f"{os.environ['HOME']}/validated_patterns/multicloud-gitops"
     if os.getenv("EXTERNAL_TEST") != "true":
-        subprocess.run(["git", "add", chart], cwd=f"{patterns_repo}")
+        subprocess.run(["git", "add", chart], cwd=f"{patterns_repo}", check=False)
         subprocess.run(
-            ["git", "commit", "-m", "Updating 'hello-world'"], cwd=f"{patterns_repo}"
+            ["git", "commit", "-m", "Updating 'hello-world'"], cwd=f"{patterns_repo}", check=False
         )
         push = subprocess.run(
-            ["git", "push"], cwd=f"{patterns_repo}", capture_output=True, text=True
+            ["git", "push"], cwd=f"{patterns_repo}", capture_output=True, text=True, check=False
         )
     else:
-        subprocess.run(["git", "add", chart])
-        subprocess.run(["git", "commit", "-m", "Updating 'hello-world'"])
-        push = subprocess.run(["git", "push"], capture_output=True, text=True)
+        subprocess.run(["git", "add", chart], check=False)
+        subprocess.run(["git", "commit", "-m", "Updating 'hello-world'"], check=False)
+        push = subprocess.run(["git", "push"], capture_output=True, text=True, check=False)
     logger.info(push.stdout)
     logger.info(push.stderr)
 
