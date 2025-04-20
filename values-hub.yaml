@@ -48,6 +48,10 @@ clusterGroup:
       name: victoriametrics-operator
       source: community-operators
       channel: beta
+    grafana:
+      name: grafana-operator
+      source: community-operators
+      channel: v5
   projects:
   - hub
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
