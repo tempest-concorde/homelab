@@ -43,10 +43,6 @@ clusterGroup:
       name: cloudnative-pg
       channel: stable-v1
       source: certified-operators
-    coo:
-      name: cluster-observability-operator
-      source: redhat-operators
-      channel: stable
 
 
   projects:
@@ -108,12 +104,7 @@ clusterGroup:
       name: postgres
       namespace: pg
       project: default
-      path: charts/all/postgres
-    coo:
-      name: coo
-      namespace: coo
-      project: default
-      path: charts/all/coo     
+      path: charts/all/postgres 
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
