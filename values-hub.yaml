@@ -125,7 +125,10 @@ clusterGroup:
         value: 100Gi
       - name: vmsingle.ingress.enabled
         value: true
-
+      - name: grafana.enabled
+        value: false
+      - name: defaultDashboards.enabled
+        value: true
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
