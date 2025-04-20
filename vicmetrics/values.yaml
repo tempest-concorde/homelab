@@ -279,7 +279,7 @@ vmsingle:
   spec:
     port: "8429"
     # -- Data retention period. Possible units character: h(ours), d(ays), w(eeks), y(ears), if no unit character specified - month. The minimum retention period is 24h. See these [docs](https://docs.victoriametrics.com/single-server-victoriametrics/#retention)
-    retentionPeriod: "1"
+    retentionPeriod: "30d"
     replicaCount: 1
     extraArgs: {}
     storage:
@@ -287,7 +287,7 @@ vmsingle:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 20Gi
+          storage: 100Gi
   ingress:
     # -- Enable deployment of ingress for server component
     enabled: false
