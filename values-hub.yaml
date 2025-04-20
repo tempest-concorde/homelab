@@ -22,6 +22,8 @@ clusterGroup:
       targetNamespaces:
   - arc-system
   - arc-runners
+  - openshift-cluster-observability-operator
+  - coo
 
   subscriptions:
     cert-manager:
@@ -41,6 +43,12 @@ clusterGroup:
       name: cloudnative-pg
       channel: stable-v1
       source: certified-operators
+    coo:
+      name: cluster-observability-operator
+      namespace: openshift-cluster-observability-operator
+      source: redhat-operators
+      channel: stable
+
 
   projects:
   - hub
@@ -102,6 +110,11 @@ clusterGroup:
       namespace: pg
       project: default
       path: charts/all/postgres
+    coo:
+      name: coo
+      namespace: coo
+      project: default
+      path: charts/all/coo     
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
@@ -126,78 +139,3 @@ clusterGroup:
       helmOverrides:
       - name: clusterGroup.isHubCluster
         value: false
-        # Before enabling cluster provisioning, ensure AWS and/or Azure
-        #   credentials and OCP pull secrets are defined in Vault.
-        #   See values-secret.yaml.template
-        #
-        #clusterPools:
-        #  exampleAWSPool:
-        #    name: aws-ap
-        #    openshiftVersion: 4.10.18
-        #    baseDomain: blueprints.rhecoeng.com
-        #    platform:
-        #      aws:
-        #        region: ap-southeast-2
-        #    clusters:
-        #    - One
-        #
-        #  exampleAzurePool:
-        #    name: azure-us
-        #    openshiftVersion: 4.10.18
-        #    baseDomain: blueprints.rhecoeng.com
-        #    platform:
-        #      azure:
-        #        baseDomainResourceGroupName: dojo-dns-zones
-        #        region: eastus
-        #    clusters:
-        #    - Two
-        #    - Three
-        #  To have apps in multiple flavors, use namespaces and use helm overrides as appropriate
-        #
-        #    pipelines:
-        #      name: pipelines
-        #      namespace: production
-        #      project: datacenter
-        #      path: applications/pipeline
-        #      repoURL: https://github.com/you/applications.git
-        #      targetRevision: stable
-        #      overrides:
-        #      - name: myparam
-        #        value: myparam
-        #
-        #    pipelines_staging:
-        #    - name: pipelines
-        #      namespace: staging
-        #      project: datacenter
-        #      path: applications/pipeline
-        #      repoURL: https://github.com/you/applications.git
-        #      targetRevision: main
-        #
-        #   Additional applications
-        #   Be sure to include additional resources your apps will require
-        #   +X machines
-        #   +Y RAM
-        #   +Z CPU
-        #    vendor-app:
-        #      name: vendor-app
-        #      namespace: default
-        #      project: vendor
-        #      path: path/to/myapp
-        #      repoURL: https://github.com/vendor/applications.git
-        #      targetRevision: main
-
-        #  managedSites:
-        #    factory:
-        #      name: factory
-        #      # repoURL: https://github.com/dagger-refuse-cool/manuela-factory.git
-        #      targetRevision: main
-        #      path: applications/factory
-        #      helmOverrides:
-        #      - name: site.isHubCluster
-        #        value: false
-        #      clusterSelector:
-        #        matchExpressions:
-        #        - key: vendor
-        #          operator: In
-        #          values:
-        #            - OpenShift
