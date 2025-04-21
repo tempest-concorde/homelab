@@ -24,6 +24,6 @@ spec:
       replacement: "nas"
       action: replace   
     # For all others, set instance to the address (IP:port)
-    - sourceLabels: [__address__]
-      targetLabel: instance
-      action: replace
+    # - sourceLabels: [__address__]
+    #   targetLabel: instance
+    #   action: replace
