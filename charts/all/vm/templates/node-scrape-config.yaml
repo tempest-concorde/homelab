@@ -9,6 +9,7 @@ spec:
     - targets:
         - "192.168.1.113:9100" # donnager
         - "192.168.1.207:9100" # nas
+        - "192.168.1.30:9100" # lab
       labels:
         external_node: "true"
   metricsPath: /metrics
@@ -22,7 +23,12 @@ spec:
       regex: "192.168.1.207:9100"
       targetLabel: instance
       replacement: "nas"
-      action: replace   
+      action: replace
+    - sourceLabels: [__address__]
+      regex: "192.168.1.30:9100"
+      targetLabel: instance
+      replacement: "lab"
+      action: replace
     # For all others, set instance to the address (IP:port)
     # - sourceLabels: [__address__]
     #   targetLabel: instance
