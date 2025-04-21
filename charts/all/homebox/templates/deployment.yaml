@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homebox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homebox
+  template:
+    metadata:
+      labels:
+        app: homebox
+    spec:
+      containers:
+        - name: homebox
+          image: ghcr.io/sysadminsmedia/homebox:latest-rootless
+          ports:
+            - containerPort: 3100
+              name: debug
+            - containerPort: 7745
+              name: http
+          envFrom:
+          - configMapRef:
+              name: homebox-cm
+          volumeMounts:
+            - name: app-storage
+              mountPath: /data
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: homebox-pvc
