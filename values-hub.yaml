@@ -26,6 +26,7 @@ clusterGroup:
   - coo
   - vm
   - grafana
+  - homebox
 
   subscriptions:
     cert-manager:
@@ -123,6 +124,16 @@ clusterGroup:
       namespace: grafana
       project: default
       path: charts/all/grafana
+    homebox:
+      name: homebox
+      namespace: homebox
+      project: default
+      path: charts/all/homebox
+    metrics-config:
+      name: metrics-config
+      namespace: vm
+      project: default
+      path: charts/all/vm
     # vmk8s-stack:
     #   name: vicmetrics
     #   namespace: vm
