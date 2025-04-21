@@ -8,7 +8,7 @@ spec:
     kind: Service
     name: homebox
   port:
-    targetPort: 80   # Replace with your service's target port
+    targetPort: 7745   # Replace with your service's target port
   tls:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect

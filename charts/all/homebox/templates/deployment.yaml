@@ -16,10 +16,8 @@ spec:
         - name: homebox
           image: ghcr.io/sysadminsmedia/homebox:latest-rootless
           ports:
-            - containerPort: 3100
-              name: debug
             - containerPort: 7745
-              name: http
+              name: homebox-http
           envFrom:
           - configMapRef:
               name: homebox-cm
