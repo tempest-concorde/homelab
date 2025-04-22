@@ -1,0 +1,16 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: ingest
+  namespace: vm
+spec:
+  #host: your-app.example.com
+  path: /api/v1/write
+  to:
+    kind: Service
+    name: vmsingle-vmks-victoria-metrics-k8s-stack
+  port:
+    targetPort: 8429   # Replace with your service's target port
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
