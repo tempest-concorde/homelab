@@ -15,7 +15,6 @@ clusterGroup:
   - cert-manager-operator
   - cert-manager
   - openshift-nmstate
-  - hello-openshift
   - pg
   - metallb-system:
       operatorGroup: true
